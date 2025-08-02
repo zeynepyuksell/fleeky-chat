@@ -43,10 +43,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const inAuthGroup = segments[0] === '(auth)';
 
     if (!user && !inAuthGroup) {
-      // Redirect to sign-in if user is not authenticated
+      
       router.replace('/(auth)/sign-in');
     } else if (user && inAuthGroup) {
-      // Redirect to home if user is authenticated
+     
       router.replace('/(tabs)');
     }
   }, [user, loading, segments, router]);

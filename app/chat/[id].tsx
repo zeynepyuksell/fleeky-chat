@@ -59,7 +59,7 @@ export default function ChatScreen() {
   useEffect(() => {
     if (!id || !user) return;
 
-    // Listen to chat room details
+   
     const chatRoomRef = doc(db, 'chatRooms', id as string);
     const unsubscribeChatRoom = onSnapshot(chatRoomRef, (doc) => {
       if (doc.exists()) {
@@ -72,7 +72,7 @@ export default function ChatScreen() {
       }
     });
 
-    // Listen to messages
+    
     const messagesRef = collection(db, 'chatRooms', id as string, 'messages');
     const q = query(messagesRef, orderBy('timestamp', 'asc'));
     
@@ -110,7 +110,7 @@ export default function ChatScreen() {
         timestamp: serverTimestamp(),
       });
 
-      // Update last message in chat room
+      
       const chatRoomRef = doc(db, 'chatRooms', id as string);
       await updateDoc(chatRoomRef, {
         lastMessage: newMessage.trim(),
@@ -131,7 +131,7 @@ export default function ChatScreen() {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
-  // Add a helper for message status icons
+  
   const getMessageStatusIcon = (status: 'sent' | 'delivered' | 'read') => {
     if (status === 'read') {
       return <Ionicons name="checkmark-done" size={16} color={theme.primary} style={{ marginLeft: 4 }} />;
@@ -142,7 +142,7 @@ export default function ChatScreen() {
     }
   };
 
- 
+  
   const getAvatar = (userId: string) => (
     <View style={styles.avatarWrapper}>
       <LinearGradient
@@ -158,7 +158,7 @@ export default function ChatScreen() {
 
   const renderMessage = ({ item }: { item: Message }) => {
     const isOwnMessage = item.userId === user?.uid;
-
+    
     const status: 'sent' | 'delivered' | 'read' = isOwnMessage ? 'read' : 'delivered';
     return (
       <View style={[styles.messageRow, isOwnMessage ? styles.ownMessageRow : styles.otherMessageRow]}>

@@ -64,7 +64,7 @@ export default function ChatsScreen() {
   const { theme } = useTheme();
   const router = useRouter();
 
-  // Generate a random 6-character connection code
+  
   const generateConnectionCode = () => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let result = "";
@@ -79,7 +79,7 @@ export default function ChatsScreen() {
 
     console.log("🔍 Fetching chat rooms for user:", user.uid);
 
-    // Create a more robust query that handles missing lastMessageTime
+   
     const q = query(collection(db, "chatRooms"));
 
     const unsubscribe = onSnapshot(
@@ -101,7 +101,7 @@ export default function ChatsScreen() {
             data.participants
           );
 
-          // Show chat rooms where the current user is a participant OR if it's a public room
+          
           if (data.participants?.includes(user.uid) || data.isPublic) {
             console.log("✅ Adding chat room to list:", data.name);
             rooms.push({
@@ -124,7 +124,7 @@ export default function ChatsScreen() {
 
         console.log("📱 Final chat rooms for user:", rooms.length);
 
-        // Sort rooms by lastMessageTime (newest first)
+        
         const sortedRooms = rooms.sort((a, b) => {
           if (!a.lastMessageTime && !b.lastMessageTime) return 0;
           if (!a.lastMessageTime) return 1;
@@ -183,12 +183,12 @@ export default function ChatsScreen() {
         lastMessageTime: serverTimestamp(),
       };
 
-      // If public, mark it as such
+      
       if (isPublic) {
         chatRoomData.isPublic = true;
         console.log("🌍 Creating PUBLIC chat room");
       } else {
-        // Generate connection code for private chats
+        
         const code = generateConnectionCode();
         chatRoomData.connectionCode = code;
         setConnectionCode(code);
@@ -198,7 +198,7 @@ export default function ChatsScreen() {
       const docRef = await addDoc(collection(db, "chatRooms"), chatRoomData);
       console.log("✅ Chat room created with ID:", docRef.id);
 
-      // Store the newly created chat for showing connection code
+      
       const newChat: ChatRoom = {
         id: docRef.id,
         name: newChatName.trim(),
@@ -212,7 +212,7 @@ export default function ChatsScreen() {
       setIsPublic(false);
       setModalVisible(false);
 
-      // Show connection code modal for private chats
+      
       if (!isPublic) {
         setShowConnectionCode(true);
       }
@@ -239,7 +239,7 @@ export default function ChatsScreen() {
 
     setJoiningChat(true);
     try {
-      // Find chat room with the given connection code
+     
       const chatRoomsRef = collection(db, "chatRooms");
       const q = query(chatRoomsRef);
       const snapshot = await getDocs(q);
@@ -260,7 +260,7 @@ export default function ChatsScreen() {
         return;
       }
 
-      // Check if user is already a participant
+      
       if (foundChatRoom.participants?.includes(user.uid)) {
         Alert.alert("Info", "You are already a member of this chat room.");
         setShowJoinByCode(false);
@@ -268,7 +268,7 @@ export default function ChatsScreen() {
         return;
       }
 
-      // Add user to the chat room
+      
       const chatRoomRef = doc(db, "chatRooms", foundChatRoom.id);
       const currentParticipants = foundChatRoom.participants || [];
       await updateDoc(chatRoomRef, {
@@ -298,7 +298,7 @@ export default function ChatsScreen() {
         const participants = data.participants || [];
         console.log("👥 Current participants:", participants);
 
-        // Add current user to participants if not already there
+        
         if (user?.uid && !participants.includes(user.uid)) {
           console.log("➕ Adding user to participants");
           await updateDoc(chatRoomRef, {
@@ -946,7 +946,7 @@ const createStyles = (theme: any) =>
       fontSize: 16,
       fontWeight: "600",
     },
-    // Connection Code Modal Styles
+    
     header: {
       flexDirection: "row",
       justifyContent: "space-between",

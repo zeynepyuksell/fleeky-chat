@@ -5,40 +5,40 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export type ThemeMode = 'light' | 'dark' | 'system';
 
 interface ThemeColors {
-  // Primary colors
+ 
   primary: string;
   primaryLight: string;
   primaryDark: string;
   
-  // Background colors
+  
   background: string;
   surface: string;
   surfaceVariant: string;
   
-  // Text colors
+ 
   text: string;
   textSecondary: string;
   textTertiary: string;
   
-  // Border colors
+ 
   border: string;
   borderLight: string;
   
-  // Status colors
+  
   success: string;
   error: string;
   warning: string;
   info: string;
   
-  // Interactive colors
+  
   buttonPrimary: string;
   buttonSecondary: string;
   buttonDisabled: string;
   
-  // Shadow colors
+  
   shadow: string;
   
-  // Input colors
+  
   inputBackground: string;
   inputBorder: string;
   inputPlaceholder: string;
@@ -84,7 +84,7 @@ const lightTheme: ThemeColors = {
 };
 
 const darkTheme: ThemeColors = {
-  primary: '#8B5CF6', // Darker purple for dark mode
+  primary: '#8B5CF6', 
   primaryLight: '#A78BFA',
   primaryDark: '#7C3AED',
   

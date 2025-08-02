@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyCOI6SpLFEtUNHhLTplcMy0n4K0WnwF1aE",
   authDomain: "fleekychat.firebaseapp.com",
