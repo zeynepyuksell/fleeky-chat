@@ -142,7 +142,7 @@ export default function ChatScreen() {
     }
   };
 
-  // Add a helper for avatars (placeholder for now)
+ 
   const getAvatar = (userId: string) => (
     <View style={styles.avatarWrapper}>
       <LinearGradient
@@ -158,7 +158,7 @@ export default function ChatScreen() {
 
   const renderMessage = ({ item }: { item: Message }) => {
     const isOwnMessage = item.userId === user?.uid;
-    // Simulate message status for demo (in real app, use actual status)
+
     const status: 'sent' | 'delivered' | 'read' = isOwnMessage ? 'read' : 'delivered';
     return (
       <View style={[styles.messageRow, isOwnMessage ? styles.ownMessageRow : styles.otherMessageRow]}>

@@ -2,7 +2,6 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
-// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCOI6SpLFEtUNHhLTplcMy0n4K0WnwF1aE",
   authDomain: "fleekychat.firebaseapp.com",
@@ -13,10 +12,10 @@ const firebaseConfig = {
   measurementId: "G-D50WNE73DN",
 };
 
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firebase services
+
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
